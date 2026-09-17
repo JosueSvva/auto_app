@@ -8,16 +8,38 @@
 <body>
   <main class="container">
     <form id="form-cadastro" class="card">
-      <h1>Criar conta</h1>
+      <h1>Criar Cadastro de Veiculo</h1>
 
       <label for="nome">Nome</label>
       <input type="text" id="nome" required>
+
+      <label for="cpf">Cpf</label>  
+      <input type="text" id="cpf"> <!-- aqui eu o cpf ta no tipo texto poque ele ta sendo recebido como um identificador -->
 
       <label for="email">E-mail</label>
       <input type="email" id="email" required>
 
       <label for="senha">Senha</label>
       <input type="password" id="senha" required minlength="6">
+
+      <label for="placa">Placa</label>
+      <input type="text"  id="placa">
+
+      <label for="modelo">Modelo</label>
+      <input type="text"  id="modelo">
+
+      <label for="cor">Cor</label>
+      <input type="text" id="cor">
+
+      <label for="vaga">Vaga</label>
+      <select id="vaga" required>
+         <option value="">Selecione uma vaga</option>
+    <option value="A01">A01</option>
+    <option value="A02">A02</option>
+    <option value="A03">A03</option>
+    <option value="A04">A04</option>
+    <option value="A05">A05</option>
+      </select>
 
       <button type="submit">Cadastrar</button>
 
