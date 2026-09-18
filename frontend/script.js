@@ -1,5 +1,5 @@
 // URL base da API. Se mudar a porta/host do backend, ajuste aqui.
-const API_URL = "http://127.0.0.1:8000";
+const API_URL = "https://auto-app-cf9p.onrender.com";
 
 const formCadastro = document.getElementById("form-cadastro");
 const formLogin = document.getElementById("form-login");
