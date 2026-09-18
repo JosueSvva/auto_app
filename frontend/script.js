@@ -99,6 +99,10 @@ if (formCadastro) {
       nome: document.getElementById("nome").value,
       email: document.getElementById("email").value,
       senha: document.getElementById("senha").value,
+      placa: document.getElementById("placa").value,
+      modelo: document.getElementById("modelo").value,
+      cor: document.getElementById("cor").value,
+      vaga: document.getElementById("vaga").value,
     }
 
     try {
@@ -110,6 +114,10 @@ if (formCadastro) {
 
       if (!resposta.ok) {
         const erro = await resposta.json();
+        const detalhe = Array.isArray(erro.detail)
+          ? erro.detail.map(item => item.msg).join(", ")
+          : erro.detail;
+
         throw new Error(erro.detail || "Erro ao cadastrar");
       }
 
@@ -177,6 +185,11 @@ async function carregarPainel() {
 
     const usuario = await resposta.json();
     document.getElementById("nome-usuario").textContent = usuario.nome;
+    document.getElementById("email-usuario").textContent = usuario.email;
+    document.getElementById("placa-usuario").textContent = usuario.placa;
+    document.getElementById("modelo-usuario").textContent = usuario.modelo;
+    document.getElementById("cor-usuario").textContent = usuario.cor;
+    document.getElementById("vaga-usuario").textContent = usuario.vaga;
   } catch {
     localStorage.removeItem("token");
     window.location.href = "index.html";
