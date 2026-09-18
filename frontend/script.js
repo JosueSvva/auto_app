@@ -5,8 +5,58 @@ const formCadastro = document.getElementById("form-cadastro");
 const formLogin = document.getElementById("form-login");
 const btnSair = document.getElementById("btn-sair");
 const campoCpf = document.getElementById("cpf");
+const campoPlaca = document.getElementById("placa");
 
 // ---------- CADASTRO ----------
+if (campoPlaca){
+  campoPlaca.addEventListener("paste", function(event) {
+    const valorColado = event.clipboardData.getData("text");
+    const placaColada = valorColado.replace(/[^a-zA-Z0-9]/g, "").toUpperCase();
+    const placaLimitada = placaColada.slice(0, 7);
+    event.preventDefault();
+    campoPlaca.value = placaLimitada;
+    if (!/^[A-Z]{3}[0-9][A-Z][0-9]{2}$/.test(placaLimitada)) {
+     campoPlaca.value = "";
+    return;
+}
+  });
+  campoPlaca.addEventListener("input", function(event){
+    const valor = campoPlaca.value;
+    const placa = valor.replace(/[^a-zA-Z0-9]/g, "").toUpperCase();
+    const letraMaiuscula = placa.toUpperCase();
+    const placaLimitada = letraMaiuscula.slice(0, 7);
+    campoPlaca.value = placaLimitada;
+
+    if (placaLimitada.length >= 1 && !/[A-Z]/.test(placaLimitada[0])) {
+  campoPlaca.value = placaLimitada.slice(0, -1);
+  return;
+}
+    if (placaLimitada.length >= 2 && !/[A-Z]/.test(placaLimitada[1])) {
+  campoPlaca.value = placaLimitada.slice(0, -1);
+  return;
+}
+if (placaLimitada.length >= 3 && !/[A-Z]/.test(placaLimitada[2])) {
+  campoPlaca.value = placaLimitada.slice(0, -1);
+  return;
+}
+if (placaLimitada.length >= 4 && !/[0-9]/.test(placaLimitada[3])) {
+  campoPlaca.value = placaLimitada.slice(0, -1);
+  return;
+}
+if (placaLimitada.length >= 5 && !/[A-Z]/.test(placaLimitada[4])) {
+  campoPlaca.value = placaLimitada.slice(0, -1);
+  return;
+}
+if (placaLimitada.length >= 6 && !/[0-9]/.test(placaLimitada[5])) {
+  campoPlaca.value = placaLimitada.slice(0, -1);
+  return;
+}
+if (placaLimitada.length >= 7 && !/[0-9]/.test(placaLimitada[6])) {
+  campoPlaca.value = placaLimitada.slice(0, -1);
+  return;
+}
+ });
+}
 if (campoCpf) {
   campoCpf.addEventListener("input", function(event){
     const valor = campoCpf.value;
@@ -49,14 +99,14 @@ if (formCadastro) {
       nome: document.getElementById("nome").value,
       email: document.getElementById("email").value,
       senha: document.getElementById("senha").value,
-    };
+    }
 
     try {
       const resposta = await fetch(`${API_URL}/cadastro`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(dados),
-      });
+      })
 
       if (!resposta.ok) {
         const erro = await resposta.json();
@@ -70,7 +120,7 @@ if (formCadastro) {
       mensagem.textContent = erro.message;
       mensagem.className = "mensagem erro";
     }
-  });
+  })
 }
 
 // ---------- LOGIN ----------
