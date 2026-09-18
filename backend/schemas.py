@@ -35,6 +35,10 @@ class UserOut(BaseModel):
     id: int
     nome: str
     email: EmailStr
+    placa: str
+    modelo: str
+    cor: str
+    vaga: str 
 
     class Config:
         from_attributes = True  # permite converter direto do model do SQLAlchemy
