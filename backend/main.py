@@ -41,6 +41,10 @@ def cadastrar_usuario(dados: schemas.UserCreate, db: Session = Depends(get_db)):
         nome=dados.nome,
         email=dados.email,
         senha_hash=auth.hash_senha(dados.senha),
+        placa=dados.placa,
+        modelo=dados.modelo,
+        cor=dados.cor,
+        vaga=dados.vaga,
     )
     db.add(novo_usuario)
     db.commit()

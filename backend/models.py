@@ -15,6 +15,10 @@ class User(Base):
     nome = Column(String, nullable=False)
     email = Column(String, unique=True, index=True, nullable=False)
     senha_hash = Column(String, nullable=False)  # nunca salvar senha em texto puro
+    placa = Column(String(7), nullable=False)
+    modelo = Column(String(50), nullable=False)
+    cor = Column(String(30), nullable=False)
+    vaga = Column(String(3), nullable=False)
     criado_em = Column(DateTime(timezone=True), server_default=func.now())
 
     # 👉 Ponto de expansão: aqui você pode adicionar novos campos
