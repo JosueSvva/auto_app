@@ -4,8 +4,41 @@ const API_URL = "http://127.0.0.1:8000";
 const formCadastro = document.getElementById("form-cadastro");
 const formLogin = document.getElementById("form-login");
 const btnSair = document.getElementById("btn-sair");
+const campoCpf = document.getElementById("cpf");
 
 // ---------- CADASTRO ----------
+if (campoCpf) {
+  campoCpf.addEventListener("input", function(event){
+    const valor = campoCpf.value;
+    const cpf = valor.replace(/\D/g, "");
+
+    if (cpf.length <=3){
+      campoCpf.value = cpf;
+      return;
+    }
+    if (cpf.length <=6){
+      const primeiraParte = cpf.slice(0, 3);
+      const segundaParte = cpf.slice(3);
+      campoCpf.value = primeiraParte + "." + segundaParte;
+      return;
+    }
+    if (cpf.length <=9){
+      const primeiraParte = cpf.slice(0, 3);
+      const segundaParte = cpf.slice(3, 6);
+      const terceiraParte = cpf.slice(6);
+      campoCpf.value = primeiraParte + "." + segundaParte + "." + terceiraParte;
+      return;
+      
+    }
+    const primeiraParte = cpf.slice(0, 3);
+    const segundaParte = cpf.slice(3, 6);
+    const terceiraParte = cpf.slice(6, 9);
+    const quartaParte = cpf.slice(9);
+    const cpfFormatado = primeiraParte + "." + segundaParte + "." + terceiraParte + "-" + quartaParte;
+    campoCpf.value = cpfFormatado;
+  });
+}
+
 if (formCadastro) {
   formCadastro.addEventListener("submit", async (e) => {
     e.preventDefault();
