@@ -20,7 +20,7 @@ import models
 
 # ⚠️ Em produção, essa chave deve vir de uma variável de ambiente (.env),
 # nunca deixar fixa no código. Aqui está fixa só para facilitar o início do projeto.
-load_dotenv()
+load_dotenv("../.env")
 SECRET_KEY = os.getenv("SECRET_KEY")
 ALGORITHM = "HS256"
 ACCESS_TOKEN_EXPIRE_MINUTES = 60
