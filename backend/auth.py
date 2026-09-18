@@ -7,7 +7,8 @@ Lógica de autenticação:
 
 from datetime import datetime, timedelta
 from typing import Optional
-
+from dotenv import load_dotenv
+import os
 from fastapi import Depends, HTTPException, status
 from fastapi.security import OAuth2PasswordBearer
 from jose import JWTError, jwt
@@ -19,7 +20,8 @@ import models
 
 # ⚠️ Em produção, essa chave deve vir de uma variável de ambiente (.env),
 # nunca deixar fixa no código. Aqui está fixa só para facilitar o início do projeto.
-SECRET_KEY = "troque-esta-chave-antes-de-ir-para-producao"
+load_dotenv()
+SECRET_KEY = os.getenv("SECRET_KEY")
 ALGORITHM = "HS256"
 ACCESS_TOKEN_EXPIRE_MINUTES = 60
 
